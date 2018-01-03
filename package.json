@@ -1,0 +1,17 @@
+{
+  "name": "@earthtone/collection-store",
+  "version": "0.0.1",
+  "description": "Simple Data Store",
+  "main": "index.js",
+  "scripts": {
+		"pretest": "eslint ./**/*.js",
+		"test": "tape tests/*.test.js | tap-spec"
+  },
+  "author": "earthtone <earthlyillusion@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0"
+  }
+}
