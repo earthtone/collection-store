@@ -1,7 +1,21 @@
+/**
+	@module createStore
+	@desc Create Data Store
+	@returns {object} store
+*/
 module.exports = function collectionStore(){
+	/**
+		@private
+	*/
 	var data = {};
 
 	return {
+		/**
+			@function add
+			@desc Add/Create New Collection
+			@param {string} name
+			@returns {object} this
+		*/
 		add: function(name){
 			if(!name || typeof name !== 'string'){
 					throw new Error('No Collection Name Given');
@@ -11,6 +25,12 @@ module.exports = function collectionStore(){
 			return this;
 		},
 		
+		/**
+			@function get
+			@desc Get Collection by Name
+			@param {string} name
+			@returns {array} collection
+		*/
 		get: function(name){
 			if(!name || typeof name !== 'string'){
 					throw new Error('No Collection Name Given');
@@ -22,7 +42,13 @@ module.exports = function collectionStore(){
 			
 			return data[name];
 		},
-
+		/**
+			@function insert
+			@desc Insert Value in to Collection
+			@param {string} name
+			@param values
+			@returns {object} this
+		*/
 		insert: function(name, ...values){
 			data[name].push(...values);
 			return this;

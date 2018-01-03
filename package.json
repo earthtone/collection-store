@@ -4,13 +4,14 @@
   "description": "Simple Data Store",
   "main": "index.js",
   "scripts": {
-		"pretest": "eslint ./**/*.js",
-		"test": "tape tests/*.test.js | tap-spec"
+    "pretest": "eslint ./**/*.js",
+    "test": "tape tests/*.test.js | tap-spec"
   },
   "author": "earthtone <earthlyillusion@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^4.14.0",
+    "jsdoc": "^3.5.5",
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0"
   }
