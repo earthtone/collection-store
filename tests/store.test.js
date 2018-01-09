@@ -13,14 +13,14 @@ test('Store Returns Object', function(assert){
 	assert.end();
 });
 
-test('Store.add Is Method', function(assert){
+test('add Is Method', function(assert){
 	var actual = store();
 	
 	assert.equal(typeof actual.add, 'function');
 	assert.end();
 });
 
-test('Store.add Requires Name Property', function(assert){
+test('add Requires Name Property', function(assert){
 	assert.throws(function(){
 		store.add();
 	}, Error);
@@ -44,14 +44,14 @@ test('Store.add Requires Name Property', function(assert){
 	assert.end();
 });
 
-test('Store.get is Method', function(assert){
+test('get is Method', function(assert){
 	var actual = store();
 
 	assert.equal(typeof actual.get, 'function');
 	assert.end();
 });
 
-test('Store.get Takes Name Property and Returns Array', function(assert){
+test('get Takes Name Property and Returns Array', function(assert){
 	var actual = store();
 	actual.add('param');
 
@@ -59,14 +59,14 @@ test('Store.get Takes Name Property and Returns Array', function(assert){
 	assert.end();
 });
 
-test('Store.insert is Method', function(assert){
+test('insert is Method', function(assert){
 	var actual = store();
 	
 	assert.equal(typeof actual.insert, 'function');
 	assert.end();
 });
 
-test('Use Store.insert to Save Properties and Store.get to Retrive Properties', function(assert){
+test('Use insert to Save Properties and get to Retrive Properties', function(assert){
 	var actual = store();
 	actual.add('collection');
 	actual.insert('collection', 1);
@@ -75,7 +75,7 @@ test('Use Store.insert to Save Properties and Store.get to Retrive Properties', 
 	assert.end();
 });
 
-test('Store.insert can Input Multiple Values', function(assert){
+test('insert can Input Multiple Values', function(assert){
 	var actual = store();
 	actual.add('collection');
 	actual.insert('collection', 1, 2, 3);
@@ -87,7 +87,7 @@ test('Store.insert can Input Multiple Values', function(assert){
 	assert.end();
 });
 
-test('Store.get Throws Error if No Collection Found', function(assert){
+test('get Throws Error if No Collection Found', function(assert){
 	var actual = store();
 	
 	assert.throws(function(){
@@ -97,7 +97,7 @@ test('Store.get Throws Error if No Collection Found', function(assert){
 	assert.end();
 });
 
-test('Store.insert is Type Agnostic', function(assert){
+test('insert is Type Agnostic', function(assert){
 	var actual = store();
 	actual.add('collection');
 	actual.insert('collection', 1, 'string', false, { param: true });
@@ -129,5 +129,13 @@ test('Native Array Methods Work on Collections', function(assert){
 	actual = db.get('collection').filter(o => o.hasOwnProperty('name'));
 	assert.deepEqual(actual, [{ name: 'Dave'}, { name: 'Larry'}]);
 
+	assert.end();
+});
+
+test('Raw Data is private', function(assert){
+	var db = store();
+	db.add('collection').insert('collection', 1, 'string', false);
+	assert.notOk(db.data);
+	assert.pass(`Available Methods: ${Object.keys(db)}`);
 	assert.end();
 });

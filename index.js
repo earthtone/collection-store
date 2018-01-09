@@ -3,13 +3,13 @@
 	@desc Create Data Store
 	@returns {object} store
 */
-module.exports = function collectionStore(){
+module.exports = function createCollectionStore(){
 	/**
 		@private
 	*/
 	var data = {};
 
-	return {
+	return Object.assign({}, {
 		/**
 			@function add
 			@desc Add/Create New Collection
@@ -35,7 +35,7 @@ module.exports = function collectionStore(){
 			if(!name || typeof name !== 'string'){
 					throw new Error('No Collection Name Given');
 			} 
-
+	
 			if(!data[name]){
 				throw new Error('Collection Not Found');
 			}
@@ -53,5 +53,5 @@ module.exports = function collectionStore(){
 			data[name].push(...values);
 			return this;
 		}
-	};
+	});
 };
