@@ -3,7 +3,7 @@
 	@desc Create Data Store
 	@returns {object} store
 */
-module.exports = function createCollectionStore(){
+module.exports = function createCollectionStore(bus){
 	/**
 		@private
 	*/
@@ -22,6 +22,11 @@ module.exports = function createCollectionStore(){
 			}
 		
 			data[name] = [];
+			
+			if(bus){
+				bus.emit('store:created', name);
+			}
+
 			return this;
 		},
 		
@@ -39,7 +44,11 @@ module.exports = function createCollectionStore(){
 			if(!data[name]){
 				throw new Error('Collection Not Found');
 			}
-			
+		
+			if(bus){
+				bus.emit('store:fetch', name);
+			}
+	
 			return data[name];
 		},
 		/**
@@ -51,6 +60,11 @@ module.exports = function createCollectionStore(){
 		*/
 		insert: function(name, ...values){
 			data[name].push(...values);
+		
+			if(bus){
+				bus.emit('store:insert', name);
+			}
+
 			return this;
 		}
 	});
